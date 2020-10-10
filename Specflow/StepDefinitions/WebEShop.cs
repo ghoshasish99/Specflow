@@ -125,10 +125,11 @@ namespace AzureWorkshop.StepDefinitions
             ProductsPage.viewbasket();
         }
 
-        [AfterScenario]
+       /* [AfterScenario]
         public void AfterExecution()
         {
             Driver.driver.Quit();
         }
+       */
     }
 }
