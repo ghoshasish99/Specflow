@@ -75,7 +75,7 @@ namespace AzureWorkshop.Pages
         {
             try
             {
-                Console.WriteLine(Driver.driver.Url);
+                System.Threading.Thread.Sleep(10000);
                 menuIcon.Click();
                 LoginIcon.Click();
                 email.SendKeys(emailID);
@@ -84,7 +84,7 @@ namespace AzureWorkshop.Pages
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
         }
 
