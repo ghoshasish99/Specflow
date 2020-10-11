@@ -27,35 +27,41 @@ namespace AzureWorkshop.Pages
             PageFactory.InitElements(Driver.driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "productsearch")]
-        [CacheLookup]
-        private IWebElement searchtext;
+        private IWebElement searchtext()
+        {
+            return (Driver.driver.FindElement(By.Id("productsearch")));
+        }
 
-        [FindsBy(How = How.Id, Using = "searchicon")]
-        [CacheLookup]
-        private IWebElement searchicon;
+        private IWebElement searchicon()
+        {
+            return (Driver.driver.FindElement(By.Id("searchicon")));
+        }
 
-        [FindsBy(How = How.XPath, Using = "//h4[@class='MuiTypography-root MuiTypography-h4']")]
-        [CacheLookup]
-        private IWebElement productHeader;
+        private IWebElement productHeader()
+        {
+            return (Driver.driver.FindElement(By.XPath("//h4[@class='MuiTypography-root MuiTypography-h4']")));
+        }
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Add to your basket')]")]
-        [CacheLookup]
-        private IWebElement AddtoBasket;
+        private IWebElement AddtoBasket()
+        {
+            return (Driver.driver.FindElement(By.XPath("//span[contains(text(),'Add to your basket')]")));
+        }
 
-        [FindsBy(How = How.Id, Using = "basket")]
-        [CacheLookup]
-        private IWebElement lnkBasket;
+        private IWebElement lnkBasket()
+        {
+            return (Driver.driver.FindElement(By.Id("basket")));
+        }
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Proceed to checkout')]")]
-        [CacheLookup]
-        private IWebElement CheckOut;
+        private IWebElement CheckOut()
+        {
+            return (Driver.driver.FindElement(By.XPath("//span[contains(text(),'Proceed to checkout')]")));
+        }
 
         public void searchproduct(string productname)
         {
             System.Threading.Thread.Sleep(2000);
-            searchtext.SendKeys(productname);
-            searchicon.Click();
+            searchtext().SendKeys(productname);
+            searchicon().Click();
         }
         public void verifyProductListed(string productname)
         {
@@ -66,21 +72,21 @@ namespace AzureWorkshop.Pages
         public void addproducttobasket(String productname)
         {
             Driver.driver.FindElement(By.XPath("//a[contains(text(),'" + productname.Trim() + "')]")).Click();
-            AddtoBasket.Click();
+            AddtoBasket().Click();
         }
         public void viewbasket()
         {
-            lnkBasket.Click();
+            lnkBasket().Click();
         }
         public void checkout()
         {
             System.Threading.Thread.Sleep(2000);
-            CheckOut.Click();
+            CheckOut().Click();
         }
         public void landOnDashboard()
         {
             System.Threading.Thread.Sleep(2000);
-            Assert.That(searchtext.Displayed);
+            Assert.That(searchtext().Displayed);
             Driver.driver.Quit();
         }
     }

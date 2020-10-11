@@ -27,46 +27,60 @@ namespace AzureWorkshop.Pages
             PageFactory.InitElements(Driver.driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "cardnumber")]
-        [CacheLookup]
-        private IWebElement cardnumber;
 
-        [FindsBy(How = How.Id, Using = "nameoncard")]
-        [CacheLookup]
-        private IWebElement nameoncard;
+        private IWebElement cardnumber()
+        {
+            return (Driver.driver.FindElement(By.Id("cardnumber")));
+        }
 
-        [FindsBy(How = How.Id, Using = "expirymonth")]
-        [CacheLookup]
-        private IWebElement expirymonth;
 
-        [FindsBy(How = How.Id, Using = "expiryyear")]
-        [CacheLookup]
-        private IWebElement expiryyear;
+        private IWebElement nameoncard()
+        {
+            return (Driver.driver.FindElement(By.Id("nameoncard")));
+        }
 
-        [FindsBy(How = How.Id, Using = "securitycode")]
-        [CacheLookup]
-        private IWebElement securitycode;
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Confirm')]")]
-        [CacheLookup]
-        private IWebElement ConfirmButton;
+        private IWebElement expirymonth()
+        {
+            return (Driver.driver.FindElement(By.Id("expirymonth")));
+        }
 
-        [FindsBy(How = How.XPath, Using = "//h4[contains(text(),'Thanks for your order')]")]
-        [CacheLookup]
-        private IWebElement ConfirmationMessage;
+
+        private IWebElement expiryyear()
+        {
+            return (Driver.driver.FindElement(By.Id("expiryyear")));
+        }
+
+
+        private IWebElement securitycode()
+        {
+            return Driver.driver.FindElement(By.Id("securitycode"));
+        }
+
+
+        private IWebElement ConfirmButton()
+        {
+            return (Driver.driver.FindElement(By.XPath("//span[contains(text(),'Confirm')]")));
+        }
+
+
+        private IWebElement ConfirmationMessage()
+        {
+            return (Driver.driver.FindElement(By.XPath("//h4[contains(text(),'Thanks for your order')]")));
+        }
 
         public void enterPaymentDetails(string strCardNumber, string strNameOnCard, string strExpiryYear, string strExpiryMonth, string strSecurityCode)
         {
-            cardnumber.SendKeys(strCardNumber);
-            nameoncard.SendKeys(strNameOnCard);
-            expiryyear.SendKeys(strExpiryYear);
-            expirymonth.SendKeys(strExpiryMonth);
-            securitycode.SendKeys(strSecurityCode);
-            ConfirmButton.Click();
+            cardnumber().SendKeys(strCardNumber);
+            nameoncard().SendKeys(strNameOnCard);
+            expiryyear().SendKeys(strExpiryYear);
+            expirymonth().SendKeys(strExpiryMonth);
+            securitycode().SendKeys(strSecurityCode);
+            ConfirmButton().Click();
         }
         public void verifyOrderConfirmation()
         {
-            Assert.That(ConfirmationMessage.Displayed);
+            Assert.That(ConfirmationMessage().Displayed);
         }
     }
 }

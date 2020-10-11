@@ -27,55 +27,64 @@ namespace AzureWorkshop.Pages
             PageFactory.InitElements(Driver.driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "datitle")]
-        [CacheLookup]
-        private IWebElement title;
+        private IWebElement title()
+        {
+            return (Driver.driver.FindElement(By.Id("datitle")));
+        }
 
-        [FindsBy(How = How.Id, Using = "dafirstname")]
-        [CacheLookup]
-        private IWebElement firstname;
+        private IWebElement firstname()
+        {
+            return (Driver.driver.FindElement(By.Id("dafirstname")));
+        }
 
-        [FindsBy(How = How.Id, Using = "dalastname")]
-        [CacheLookup]
-        private IWebElement lastname;
+        private IWebElement lastname()
+        {
+            return (Driver.driver.FindElement(By.Id("dalastname")));
+        }
 
-        [FindsBy(How = How.Id, Using = "daaddressline1")]
-        [CacheLookup]
-        private IWebElement address1;
+        private IWebElement address1()
+        {
+            return (Driver.driver.FindElement(By.Id("daaddressline1")));
+        }
 
-        [FindsBy(How = How.Id, Using = "daaddressline2")]
-        [CacheLookup]
-        private IWebElement address2;
+        private IWebElement address2()
+        {
+            return (Driver.driver.FindElement(By.Id("daaddressline2")));
+        }
 
-        [FindsBy(How = How.Id, Using = "dacity")]
-        [CacheLookup]
-        private IWebElement city;
+        private IWebElement city()
+        {
+            return (Driver.driver.FindElement(By.Id("dacity")));
+        }
 
-        [FindsBy(How = How.Id, Using = "dastateprovinceregion")]
-        [CacheLookup]
-        private IWebElement province;
+        private IWebElement province()
+        {
+            return (Driver.driver.FindElement(By.Id("dastateprovinceregion")));
+        }
 
-        [FindsBy(How = How.Id, Using = "dazippostcode")]
-        [CacheLookup]
-        private IWebElement postcode;
+        private IWebElement postcode()
+        {
+            return (Driver.driver.FindElement(By.Id("dazippostcode")));
+        }
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Next')]")]
-        [CacheLookup]
-        private IWebElement Next;
+        private IWebElement Next()
+        {
+            return (Driver.driver.FindElement(By.XPath("//span[contains(text(),'Next')]")));
+        }
         public void filladdressdetails(string titlevalue, string fname, string lname, string adr1, string adr2, string cityvalue, string prov, string post)
         {
-            title.SendKeys(titlevalue);
-            firstname.SendKeys(fname);
-            lastname.SendKeys(lname);
-            address1.SendKeys(adr1);
-            address2.SendKeys(adr2);
-            city.SendKeys(cityvalue);
-            province.SendKeys(prov);
-            postcode.SendKeys(post);
+            title().SendKeys(titlevalue);
+            firstname().SendKeys(fname);
+            lastname().SendKeys(lname);
+            address1().SendKeys(adr1);
+            address2().SendKeys(adr2);
+            city().SendKeys(cityvalue);
+            province().SendKeys(prov);
+            postcode().SendKeys(post);
         }
         public void clickNext()
         {
-            Next.Click();
+            Next().Click();
         }  
     }
 }

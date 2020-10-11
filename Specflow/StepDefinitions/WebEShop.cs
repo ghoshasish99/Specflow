@@ -24,6 +24,7 @@ namespace AzureWorkshop.StepDefinitions
         public static ProductsPage ProductsPage = new ProductsPage();
         public static AddressPage AddressPage = new AddressPage();
         public static PaymentsPage PaymentsPage =  new PaymentsPage();
+       // String gridURL = "http://localhost:4444/wd/hub";
 
         private readonly ScenarioContext context;
 
@@ -35,7 +36,11 @@ namespace AzureWorkshop.StepDefinitions
         [Given(@"User launched eshop login page")]
         public void launchEshop()
         {
-            Driver.driver = new ChromeDriver();
+             Driver.driver = new ChromeDriver();
+           // DesiredCapabilities capabilities = new DesiredCapabilities();
+           // capabilities.SetCapability("platform", "LINUX");
+           // capabilities.SetCapability("browserName", "chrome");
+           // Driver.driver = new RemoteWebDriver(new Uri(gridURL), capabilities, TimeSpan.FromSeconds(600));
             Driver.driver.Manage().Window.Maximize();
             Driver.driver.Navigate().GoToUrl(URL);
         }
