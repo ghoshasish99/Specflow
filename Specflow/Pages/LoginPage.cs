@@ -73,11 +73,19 @@ namespace AzureWorkshop.Pages
       
         public void Login(string emailID, string passwordtext)
         {
-            menuIcon.Click();
-            LoginIcon.Click();
-            email.SendKeys(emailID);
-            password.SendKeys(passwordtext);
-            LoginButton.Click();
+            try
+            {
+                Console.WriteLine(Driver.driver.Url);
+                menuIcon.Click();
+                LoginIcon.Click();
+                email.SendKeys(emailID);
+                password.SendKeys(passwordtext);
+                LoginButton.Click();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void addaccount(string fname, string lname, string regemail, string passwordtext)
